@@ -191,18 +191,27 @@ public class ST {
 
     // move the symbol table to one of size k
     private void resize(int k) {
-        String[] tmpkeys = new STring[k];
-        
-    }
-
-    //Ret
-    /*public String[] showKeys() {
-        for (int i = 0; i < totsize; i++) {
-            StdOut.print(" " + keys[i]);
+        String[] tmpkeys = new String[k];
+        int[] tmpvalues = new int[k];
+        int i;
+        for (i = 0; i < totsize; i++) {
+            tmpkeys[i] = keys[i];
+            tmpvalues[i] = values[i];
         }
 
-        return ;
-        }*/
+        keys = tmpkeys;
+        values = tmpvalues;
+    }
+
+    //Returns an array with the keys
+    public String[] showKeys() {
+        String[] tmpkeys = new String[totsize - 1];
+        int i;
+        for (i = 0; i < totsize; i++) {
+            tmpkeys[i] = keys[i];
+        }
+        return tmpkeys;
+    }
 
 
     //-----------------------------------------------------------------
