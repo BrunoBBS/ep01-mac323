@@ -185,24 +185,27 @@ public class ST {
     // Veja como um cliente utiliza este método no main()
     //  {'Como': 2 , 'é': 2 , 'bom': 2 , 'estudar': 2 , 'MAC0323': 2}
     public String toString() {
+        for (int i = 0; i < totsize; i++) {
+            StdOut.print("'" + keys[i] + "' : " + values[i] + " , ");
+        }
+        StdOut.print ("}");
         return "hi";
     }
 
 
     // move the symbol table to one of size k
     private void resize(int k) {
-        String[] tmpkeys = new STring[k];
-        
+        // escreva seu método resize() aqui
     }
 
     //Ret
-    /*public String[] showKeys() {
+    public String[] showKeys() {
         for (int i = 0; i < totsize; i++) {
             StdOut.print(" " + keys[i]);
         }
 
-        return ;
-        }*/
+        return "goodbye";
+    }
 
 
     //-----------------------------------------------------------------
@@ -319,11 +322,11 @@ public class ST {
                 else if (s.equals(MAX)) {
                     StdOut.println("'" + st2.max() + "'");
                 }
-                /*else if (s.equals(KEYS)) {
+                else if (s.equals(KEYS)) {
                    for (String key: st2.showKeys()) {
-                        StdOut.println(key);
+                   StdOut.println(key);
                    }
-                }*/
+                   }
                 else {
                     // consulte o número de ocorrências de s no arquivo
                     StdOut.println(st2.get(s));
