@@ -82,8 +82,9 @@ public class ST {
     }
 
     //Returns the position of a key in the array
-    private int findPos (String key) {
-        for (i=0; keys[i] != key; i++);
+    private int findPos(String key) {
+        int i;
+        for (i = 0; keys[i] != key; i++);
         return --i;
     }
 
@@ -94,7 +95,10 @@ public class ST {
         if (key == null) {
             throw new java.lang.NullPointerException("ST.get(): key is null");
         }
-        // escreva seu método get() aqui
+        if (contains(key)) {
+            return values[findPos(key)];
+        }
+        return -1;
     }
 
     // Insert the key into the symbol table and increase its value
@@ -122,7 +126,16 @@ public class ST {
         if (key == null) {
             throw new java.lang.NullPointerException("ST.delete(): key is null");
         }
-        // escreva seu método delete() aqui
+        if (contains(key)) {
+            for (int i = findPos(key); i < totsize; i++) {
+                keys[i] = keys[i + 1];
+                values[i] = values[++i];
+
+            }
+            if (totsize <= ((keys.length)/4)) {
+                resize(keys.length/2);
+            }
+        }
     }
 
     // Does this symbol table contain the given key?
@@ -131,24 +144,40 @@ public class ST {
         if (key == null) {
             throw new java.lang.NullPointerException("ST.contains(): key is null");
         }
-        // escreva seu método contains() aqui
+        for (int i = 0; i <= totsize; i++) {
+            if (keys[i].equals(key))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     // Returns the number of key-value pairs in this symbol table
     public int size() {
-        // escreva seu métod size aqui
+        return totsize;
     }
 
     // Is this symbol table empty?
     // Returns: true if this symbol table is empty and false otherwise
     public boolean isEmpty() {
-        // escreva seu métod isEmpty() aqui
+        return (totsize == 0);
     }
 
     // Returns the largest (= maior frequência) key in the symbol table
     // Throws java.util.NoSuchElementException - if the symbol table is empty
     public String max() {
-        // escreva seu métod max() aqui
+        if (isEmpty()) {
+            throw new java.util.NoSuchElementException("ST.max(): table is empty");
+        }
+        int maxind;
+        for (int i = 0; i <= totsize; i++)
+        {
+            if (values[i] > values[maxind]) {
+                maxind = i;
+            }
+        }
+        return keys[maxind];
     }
 
     // Returns a string representing the symbol table
