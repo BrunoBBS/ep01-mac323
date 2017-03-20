@@ -67,8 +67,8 @@ import edu.princeton.cs.algs4.Stopwatch; // arquivo
 
 
 public class ST {
-    i
-        private String[] keys;
+
+    private String[] keys;
 
     private int[] values;
 
@@ -79,6 +79,12 @@ public class ST {
         keys = new String[1];
         values = new int[1];
         totsize = 0;
+    }
+
+    //Returns the position of a key in the array
+    private int findPos (String key) {
+        for (i=0; keys[i] != key; i++);
+        return --i;
     }
 
     // Returns the value associated with the given key if the key is in the symbol table
@@ -98,10 +104,14 @@ public class ST {
             throw new java.lang.NullPointerException("ST.put(): key is null");
         }
         if (!contains(key)) {
-
+            if (totsize == keys.length) {
+                resize(2 * keys.length);
+            }
+            keys[totsize] = key;
+            values[totsize ++] = 1;
         }
         else {
-            totsize
+            values[findPos(key)] ++;
         }
     }
 
